@@ -1,0 +1,549 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node Configuration</title>
+</head>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    color: #1a1f36;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Ubuntu, sans-serif;
+  }
+
+  body {
+    min-height: 100%;
+    background-color: #ffffff;
+  }
+
+  h1 {
+    letter-spacing: -1px;
+  }
+
+  a {
+    color: #5469d4;
+    text-decoration: unset;
+  }
+
+  .login-root {
+    background: #fff;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .loginbackground {
+    min-height: 692px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .flex-flex {
+    display: flex;
+  }
+
+  .align-center {
+    align-items: center;
+  }
+
+  .center-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box-root {
+    box-sizing: border-box;
+  }
+
+  .flex-direction--column {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .loginbackground-gridContainer {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: [start] 1fr [left-gutter] (86.6px)[16] [left-gutter] 1fr [end];
+    grid-template-columns: [start] 1fr [left-gutter] repeat(16, 86.6px) [left-gutter] 1fr [end];
+    -ms-grid-rows: [top] 1fr [top-gutter] (64px)[8] [bottom-gutter] 1fr [bottom];
+    grid-template-rows: [top] 1fr [top-gutter] repeat(8, 64px) [bottom-gutter] 1fr [bottom];
+    justify-content: center;
+    margin: 0 -2%;
+    transform: rotate(-12deg) skew(-12deg);
+  }
+
+  .box-divider--light-all-2 {
+    box-shadow: inset 0 0 0 2px #e3e8ee;
+  }
+
+  .box-background--blue {
+    background-color: #5469d4;
+  }
+
+  .box-background--white {
+    background-color: #ffffff;
+  }
+
+  .box-background--blue800 {
+    background-color: #212d63;
+  }
+
+  .box-background--gray100 {
+    background-color: #e3e8ee;
+  }
+
+  .box-background--cyan200 {
+    background-color: #7fd3ed;
+  }
+
+  .padding-top--64 {
+    padding-top: 64px;
+  }
+
+  .padding-top--24 {
+    padding-top: 24px;
+  }
+
+  .padding-top--48 {
+    padding-top: 48px;
+  }
+
+  .padding-bottom--24 {
+    padding-bottom: 24px;
+  }
+
+  .padding-horizontal--48 {
+    padding: 48px;
+  }
+
+  .padding-bottom--15 {
+    padding-bottom: 15px;
+  }
+
+
+  .flex-justifyContent--center {
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .formbg {
+    margin: 0px auto;
+    width: 100%;
+    max-width: 448px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+  }
+
+  span {
+    display: block;
+    font-size: 20px;
+    line-height: 28px;
+    color: #1a1f36;
+  }
+
+  label {
+    margin-bottom: 10px;
+  }
+
+  .reset-pass a,
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+  }
+
+  .reset-pass>a {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .grid--50-50 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+  }
+
+  .field .boxInput {
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    width: 100%;
+    min-height: 44px;
+    border: unset;
+    border-radius: 4px;
+    outline-color: rgb(84 105 212 / 0.5);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+  }
+
+  .btn {
+    background-color: rgb(84, 105, 212) !important;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+      rgb(84, 105, 212) 0px 0px 0px 1px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(60, 66, 87, 0.08) 0px 2px 5px 0px !important;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .field-checkbox .boxInput {
+    width: 20px;
+    height: 15px;
+    margin-right: 5px;
+    box-shadow: unset;
+    min-height: unset;
+  }
+
+  .field-checkbox label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+  }
+
+  a.ssolink {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .footer-link span {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .listing a {
+    color: #697386;
+    font-weight: 600;
+    margin: 0 10px;
+  }
+
+  .animationRightLeft {
+    animation: animationRightLeft 2s ease-in-out infinite;
+  }
+
+  .animationLeftRight {
+    animation: animationLeftRight 2s ease-in-out infinite;
+  }
+
+  .tans3s {
+    animation: animationLeftRight 3s ease-in-out infinite;
+  }
+
+  .tans4s {
+    animation: animationLeftRight 4s ease-in-out infinite;
+  }
+
+  @keyframes animationLeftRight {
+    0% {
+      transform: translateX(0px);
+    }
+
+    50% {
+      transform: translateX(1000px);
+    }
+
+    100% {
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes animationRightLeft {
+    0% {
+      transform: translateX(0px);
+    }
+
+    50% {
+      transform: translateX(-1000px);
+    }
+
+    100% {
+      transform: translateX(0px);
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .loginbackground {
+      display: none;
+    }
+  }
+
+  .bg-overflow {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000096;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bg-overflow.active {
+    z-index: 9999;
+    animation: showOn 100ms ease-in forwards;
+  }
+
+  .box-message {
+    background-color: #fff;
+    min-width: 300px;
+    max-width: 390px;
+    max-height: 260px;
+    border-radius: 4px;
+    padding: 2rem;
+    opacity: 0;
+  }
+
+  .box-message.active {
+    animation: intro 100ms 100ms ease-in forwards;
+  }
+
+  .box-message>p {
+    display: -webkit-box;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: center;
+  }
+
+  .box-message>h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .box-message>.btn {
+    margin-top: 1rem;
+  }
+
+  @keyframes intro {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes showOn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<body>
+  <div class="login-root">
+    <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
+      <div class="loginbackground box-background--white padding-top--64">
+        <div class="loginbackground-gridContainer">
+          <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
+            <div class="box-root"
+              style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+            </div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
+            <div class="box-root box-divider--light-all-2 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 6 / start / auto / 2;">
+            <div class="box-root box-background--blue800" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 7 / start / auto / 4;">
+            <div class="box-root box-background--blue animationLeftRight" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 8 / 4 / auto / 6;">
+            <div class="box-root box-background--gray100 animationLeftRight tans3s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 2 / 15 / auto / end;">
+            <div class="box-root box-background--cyan200 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 3 / 14 / auto / end;">
+            <div class="box-root box-background--blue animationRightLeft" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 4 / 17 / auto / 20;">
+            <div class="box-root box-background--gray100 animationRightLeft tans4s" style="flex-grow: 1;"></div>
+          </div>
+          <div class="box-root flex-flex" style="grid-area: 5 / 14 / auto / 17;">
+            <div class="box-root box-divider--light-all-2 animationRightLeft tans3s" style="flex-grow: 1;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+        <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          <h1><a href="#" rel="dofollow">Node Configuration</a></h1>
+        </div>
+        <div class="formbg-outer">
+          <div class="formbg">
+            <!-- config wifi -->
+            <div class="formbg-inner padding-horizontal--48">
+              <span class="padding-bottom--15">Cấu hình WIFI</span>
+              <div id="wifi-config">
+                <div class="field padding-bottom--24">
+                  <label for="email">Name</label>
+                  <input id="wifi-name" class="boxInput" type="email" name="email">
+                </div>
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="password">Password</label>
+                  </div>
+                  <input id="wifi-pass" class="boxInput" type="password" name="password">
+                </div>
+                <div class="field padding-bottom--24">
+                  <div id="connect-wifi" class="btn boxInput">Kết nối</div>
+                </div>
+              </div>
+            </div>
+            <!-- config socket -->
+            <div style="display: none;" class="formbg-inner padding-horizontal--48">
+              <span class="padding-bottom--15">Cấu hình SOCKET</span>
+              <div id="socket-config">
+                <div class="field padding-bottom--24">
+                  <label for="email">Hostname</label>
+                  <input id="socket-dns" class="boxInput" type="text" name="socket-dns">
+                </div>
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="password">Port</label>
+                  </div>
+                  <input id="socket-port" class="boxInput" type="number" name="socket-port">
+                </div>
+                <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="password">ID Node</label>
+                  </div>
+                  <input id="socket-id" class="boxInput" type="password" name="id-node">
+                </div>
+                <div class="field padding-bottom--24">
+                  <div id="config-socket" class="btn boxInput">Cấu hình</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-link padding-top--24">
+            <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
+              <span><a href="#">© Copyright by Miru (19/08/2022)</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-overflow">
+    <div class="box-message field">
+      <h2 class="box-message--title">Thông báo</h2>
+      <p class="box-message--content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos nobis impedit
+        fuga nemo dicta. Eos aliquam eveniet ad culpa sapiente quia at? Odit ullam tempora delectus hic eius quibusdam
+        nemo!</p>
+      <div class="box-message--accept btn boxInput">Đã hiểu</div>
+    </div>
+  </div>
+  <script>
+    const boxMessage = document.querySelector('.box-message');
+    const bgOverflow = document.querySelector('.bg-overflow');
+
+    const eleWifiName = document.querySelector('input#wifi-name');
+    const eleWifiPass = document.querySelector('input#wifi-pass');
+    const eleBtnConnectWifi = document.querySelector('div#connect-wifi');
+
+    const eleSocketDNS = document.querySelector('input#socket-dns');
+    const eleSocketPort = document.querySelector('input#socket-port');
+    const eleIDNode = document.querySelector('input#socket-id');
+    const eleBtnConfigSocket = document.querySelector('div#config-socket');
+
+    bgOverflow.addEventListener('click', toggleModal); // closing modal
+    boxMessage.querySelector('div').addEventListener('click', (event) => { event.stopPropagation(); toggleModal({}); }); // closing modal
+
+    async function toggleModal({ title = 'Thông báo', message = 'Không có thông báo nào cả!' }) {
+
+      if (bgOverflow.className.includes('active')) { // closing modal
+        boxMessage.classList.remove('active');
+        bgOverflow.classList.remove('active');
+      } else {
+        boxMessage.querySelector('.box-message--title').innerHTML = title;
+        boxMessage.querySelector('.box-message--content').innerHTML = message;
+        const runOpenBox = () => {
+          return new Promise((res) => {
+            bgOverflow.classList.add('active');
+            setTimeout(() => {
+              boxMessage.classList.add('active');
+              res(true);
+            }, 100);
+          })
+        }
+        await runOpenBox();
+      }
+    };
+
+    eleBtnConnectWifi.addEventListener('click', async function () {
+
+      try {
+        const res = await sendConfigByURL('/config/wifi', { name: eleWifiName.value, password: eleWifiPass.value });
+        if (res.success === true) {
+          await toggleModal({ message: 'Wifi bạn đã cấu hình xong và hiện đang connect rồi đó 1 ^^!' });
+        }
+      } catch (error) {
+        await toggleModal({ title: 'Opps!', message: 'Có lỗi gì đó xảy ra òi!' });
+      }
+
+    });
+
+    eleBtnConfigSocket.addEventListener('click', async function () {
+
+      try {
+        const res = await sendConfigByURL('/config/websocket', { dns: eleSocketDNS.value, port: eleSocketPort.value, id: eleIDNode.value });
+        console.log(res);
+      } catch (error) {
+        console.log(error);
+      }
+
+    });
+
+    async function sendConfigByURL(url, payload) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+      return await response.json();
+    }
+
+  </script>
+</body>
+
+</html>
